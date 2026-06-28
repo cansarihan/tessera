@@ -1,0 +1,17 @@
+[package]
+name = "tessera"
+version = "0.1.0"
+edition = "2021"
+publish = false
+authors = ["Can Sarıhan <sarihancan@icloud.com>"]
+description = "Tessera — on-chain event ticketing on Soroban (NFT tickets, capped resale, QR check-in, POAP)"
+
+[lib]
+crate-type = ["lib", "cdylib"]
+doctest = false
+
+[dependencies]
+soroban-sdk = { workspace = true }
+
+[dev-dependencies]
+soroban-sdk = { workspace = true, features = ["testutils"] }
