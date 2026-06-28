@@ -1,0 +1,250 @@
+@import 'tailwindcss';
+
+/* ============================================================================
+   Tessera — "Holographic" design system
+   Deep ink-indigo canvas · iridescent holo-foil gradient (anti-counterfeit motif) ·
+   ticket-stub cards · mono serial numbers.
+   ========================================================================== */
+
+@theme {
+  --font-display: 'Sora', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --color-ink-950: #07060f;
+  --color-ink-900: #0b0a18;
+  --color-ink-850: #110f22;
+  --color-ink-800: #181530;
+  --color-ink-700: #221d44;
+
+  --color-holo-cyan: #3fe0ff;
+  --color-holo-blue: #5b7cff;
+  --color-holo-violet: #9b5cff;
+  --color-holo-magenta: #e85fe8;
+  --color-holo-gold: #f5c26b;
+
+  --color-accent: #9b5cff;
+  --color-valid: #2be8b5;
+  --color-warning: #f5c26b;
+  --color-danger: #ff5c8a;
+
+  --color-fg: #eceaff;
+  --color-fg-muted: #9a95c4;
+  --color-fg-subtle: #5e5890;
+
+  --radius-xl: 1.1rem;
+  --radius-2xl: 1.5rem;
+
+  --animate-holo: holo 8s linear infinite;
+  --animate-shimmer: shimmer 3.2s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 2.6s ease-in-out infinite;
+}
+
+@keyframes holo {
+  to {
+    background-position: 300% center;
+  }
+}
+@keyframes shimmer {
+  0% {
+    transform: translateX(-130%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(230%) skewX(-12deg);
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-valid) 55%, transparent);
+  }
+  50% {
+    opacity: 0.85;
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-valid) 0%, transparent);
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@layer base {
+  :root {
+    --gradient-holo: linear-gradient(
+      115deg,
+      var(--color-holo-cyan),
+      var(--color-holo-blue),
+      var(--color-holo-violet),
+      var(--color-holo-magenta),
+      var(--color-holo-gold),
+      var(--color-holo-cyan)
+    );
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    font-family: var(--font-sans);
+    color: var(--color-fg);
+    background-color: var(--color-ink-950);
+    background-image:
+      radial-gradient(56rem 56rem at 8% -10%, color-mix(in srgb, var(--color-holo-cyan) 12%, transparent), transparent 60%),
+      radial-gradient(50rem 50rem at 100% 0%, color-mix(in srgb, var(--color-holo-magenta) 13%, transparent), transparent 55%),
+      radial-gradient(46rem 38rem at 50% 118%, color-mix(in srgb, var(--color-holo-violet) 12%, transparent), transparent 60%);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-holo-violet) 38%, transparent);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-holo-violet);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--color-fg-subtle) 45%, transparent);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+}
+
+@layer components {
+  .glass {
+    background: color-mix(in srgb, #fff 4%, transparent);
+    border: 1px solid color-mix(in srgb, #fff 9%, transparent);
+    backdrop-filter: blur(14px);
+    border-radius: var(--radius-xl);
+  }
+  .glass-strong {
+    background: linear-gradient(160deg, color-mix(in srgb, #fff 7%, transparent), color-mix(in srgb, #fff 3%, transparent));
+    border: 1px solid color-mix(in srgb, #fff 11%, transparent);
+    backdrop-filter: blur(18px);
+    border-radius: var(--radius-2xl);
+  }
+
+  /* Signature: iridescent holo-foil clipped text */
+  .holo-text {
+    background: var(--gradient-holo);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: var(--animate-holo);
+  }
+
+  /* Signature: a holographic foil surface with a moving glint */
+  .holo-foil {
+    position: relative;
+    overflow: hidden;
+    background: var(--gradient-holo);
+    background-size: 300% auto;
+    animation: var(--animate-holo);
+  }
+  .holo-foil::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 35%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    animation: var(--animate-shimmer);
+  }
+
+  /* Gradient (holo) border on a dark surface */
+  .holo-border {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(var(--color-ink-850), var(--color-ink-850)) padding-box,
+      var(--gradient-holo) border-box;
+    background-size:
+      auto,
+      300% auto;
+    animation: holo 10s linear infinite;
+  }
+
+  .live-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: var(--color-valid);
+    animation: var(--animate-pulse-glow);
+  }
+
+  .tnum {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
+  }
+
+  /* Ticket-stub card: holo border + side notches + a perforation divider */
+  .ticket-notch {
+    --notch: 0.85rem;
+    -webkit-mask:
+      radial-gradient(var(--notch) at 0 50%, transparent 98%, #000) -1px 0,
+      radial-gradient(var(--notch) at 100% 50%, transparent 98%, #000) 0 0;
+    -webkit-mask-composite: source-in;
+    mask:
+      radial-gradient(var(--notch) at 0 50%, transparent 98%, #000),
+      radial-gradient(var(--notch) at 100% 50%, transparent 98%, #000);
+    mask-composite: intersect;
+  }
+
+  .rise {
+    animation: rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .holo-text,
+  .holo-foil,
+  .holo-border {
+    animation: none;
+  }
+}
