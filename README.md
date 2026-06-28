@@ -8,7 +8,7 @@ Every ticket is a unique NFT on Soroban. Buy it to your wallet, show a QR at the
 organizer verifies it on-chain and marks it used — so a ticket can't be faked, copied, or used
 twice. Resale is price-capped on-chain, so scalpers can't gouge.
 
-[Live demo](#) · [Pitch deck](#) · [Demo video](#) · [Contract on testnet](#) · Built by **Can Sarıhan**
+[Live demo](#) · [Pitch deck](#) · [Demo video](#) · [Contract on testnet](https://stellar.expert/explorer/testnet/contract/CBPKPVNYRW6HS7ZZYAB6QZ45FHJTA2XWJBAPWTV2R5UBED4SCROPMLFG) · Built by **Can Sarıhan**
 
 </div>
 

@@ -1,0 +1,20 @@
+{
+  "network": "testnet",
+  "networkPassphrase": "Test SDF Network ; September 2015",
+  "rpcUrl": "https://soroban-testnet.stellar.org",
+  "horizonUrl": "https://horizon-testnet.stellar.org",
+  "contractId": "CBPKPVNYRW6HS7ZZYAB6QZ45FHJTA2XWJBAPWTV2R5UBED4SCROPMLFG",
+  "admin": "GBINGNJRFP6KMDZN43GTL4XUQC6UPPDQAV7A6AAMBJE3IJYUMZMI3TYT",
+  "feeBps": 0,
+  "assets": {
+    "XLM": {
+      "code": "XLM",
+      "issuer": null,
+      "sac": "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC",
+      "decimals": 7,
+      "native": true
+    }
+  },
+  "explorer": "https://stellar.expert/explorer/testnet/contract/CBPKPVNYRW6HS7ZZYAB6QZ45FHJTA2XWJBAPWTV2R5UBED4SCROPMLFG",
+  "deployedAt": "2026-06-28"
+}
