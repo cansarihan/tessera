@@ -1,0 +1,27 @@
+# Render blueprint for the Tessera API.
+# TURSO_DATABASE_URL and TURSO_AUTH_TOKEN are set in the Render dashboard (sync: false),
+# so no secrets are committed to the repository.
+services:
+  - type: web
+    name: tessera-api
+    runtime: docker
+    dockerfilePath: ./apps/api/Dockerfile
+    dockerContext: .
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /api/health
+    envVars:
+      - key: NETWORK
+        value: testnet
+      - key: CONTRACT_ID
+        value: CBPKPVNYRW6HS7ZZYAB6QZ45FHJTA2XWJBAPWTV2R5UBED4SCROPMLFG
+      - key: RPC_URL
+        value: https://soroban-testnet.stellar.org
+      - key: CORS_ORIGIN
+        value: https://cansarihan.github.io
+      - key: INDEXER_ENABLED
+        value: 'true'
+      - key: TURSO_DATABASE_URL
+        sync: false
+      - key: TURSO_AUTH_TOKEN
+        sync: false
