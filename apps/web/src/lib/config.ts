@@ -10,6 +10,10 @@ export const NETWORK: NetworkName = (env.VITE_NETWORK as NetworkName) ?? 'testne
 export const NETWORK_PASSPHRASE = env.VITE_NETWORK_PASSPHRASE ?? NETWORK_PASSPHRASES.testnet;
 export const API_URL = env.VITE_API_URL ?? 'http://localhost:8788';
 
+/** Public Google Form for the pilot programme (wallet, email, name, rating). */
+export const GOOGLE_FORM_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSdeumsCeoZpgwMx-bcD1A3mNk20CPh_OLEJDOkt3ovxMg4IoQ/viewform';
+
 /** Payment asset. XLM is frictionless on testnet (every account is funded). */
 export const XLM: AssetInfo = {
   code: 'XLM',

@@ -4,7 +4,7 @@ import { toast } from 'sonner';
 import { useWallet } from '../lib/wallet';
 import { api } from '../lib/api';
 import { track } from '../lib/analytics';
-import { CONTRACT_ID, NETWORK } from '../lib/config';
+import { CONTRACT_ID, GOOGLE_FORM_URL, NETWORK } from '../lib/config';
 import { contractExplorerUrl } from '@tessera/sdk';
 import { PageHeader } from '../components/layout/PageHeader';
 import { Card } from '../components/ui/Card';
@@ -83,6 +83,9 @@ export function Settings() {
         <Card>
           <h2 className="font-display text-lg text-fg">Join the pilot</h2>
           <p className="mt-1 text-sm text-fg-muted">Tell us who you are and rate Tessera — it shapes what we build next.</p>
+          <a href={GOOGLE_FORM_URL} target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-sm text-holo-violet hover:underline">
+            Prefer a form? Open the Google Form <ExternalLink className="size-3.5" />
+          </a>
           {done ? (
             <div className="mt-6 rounded-xl border border-valid/30 bg-valid/5 p-4 text-sm text-fg">
               🎉 You’re on the list. Thank you!
