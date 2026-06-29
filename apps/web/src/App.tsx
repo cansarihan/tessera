@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { AppLayout } from './components/layout/AppLayout';
+import { RouteEffects } from './components/RouteEffects';
 
 const named = <T extends Record<string, React.ComponentType>>(loader: () => Promise<T>, key: keyof T) =>
   lazy(() => loader().then((m) => ({ default: m[key] })));
@@ -20,8 +21,10 @@ const Settings = named(() => import('./pages/Settings'), 'Settings');
 
 export function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Landing />} />
+    <>
+      <RouteEffects />
+      <Routes>
+        <Route path="/" element={<Landing />} />
       <Route path="/docs" element={<Docs />} />
       <Route path="/app" element={<AppLayout />}>
         <Route index element={<Browse />} />
@@ -36,6 +39,7 @@ export function App() {
       </Route>
       <Route path="/404" element={<NotFound />} />
       <Route path="*" element={<Navigate to="/404" replace />} />
-    </Routes>
+      </Routes>
+    </>
   );
 }
