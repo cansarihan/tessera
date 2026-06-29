@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Ticket as TicketIcon } from 'lucide-react';
+import { CalendarPlus, Ticket as TicketIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import type { Event, Ticket } from '@tessera/sdk';
 import { useEvents, useMyTickets } from '../lib/queries';
@@ -10,6 +10,7 @@ import { tessera } from '../lib/client';
 import { assetBySac } from '../lib/config';
 import { formatToken, parseUnits } from '../lib/format';
 import { track } from '../lib/analytics';
+import { downloadIcs } from '../lib/ics';
 import { PageHeader } from '../components/layout/PageHeader';
 import { ConnectGate } from '../components/layout/ConnectGate';
 import { HoloTicket } from '../components/ticket/HoloTicket';
@@ -128,24 +129,33 @@ function TicketRow({ ticket, event }: { ticket: Ticket; event: Event }) {
   return (
     <div className="space-y-3">
       <HoloTicket ticket={ticket} event={event} />
-      {!ticket.used && (
-        <div className="flex flex-wrap gap-2">
-          {ticket.listPrice > 0n ? (
-            <Button size="sm" variant="outline" loading={unlist.isPending} onClick={() => unlist.mutate()}>
-              Unlist
-            </Button>
-          ) : (
-            event.maxResaleBps > 0 && (
-              <Button size="sm" variant="outline" onClick={() => setListOpen(true)}>
-                List for resale
+      <div className="flex flex-wrap gap-2">
+        <Button
+          size="sm"
+          variant="ghost"
+          onClick={() => downloadIcs({ title: event.name, start: event.startTime, description: `Tessera ticket #${ticket.id}` })}
+        >
+          <CalendarPlus className="size-4" /> Add to calendar
+        </Button>
+        {!ticket.used && (
+          <>
+            {ticket.listPrice > 0n ? (
+              <Button size="sm" variant="outline" loading={unlist.isPending} onClick={() => unlist.mutate()}>
+                Unlist
               </Button>
-            )
-          )}
-          <Button size="sm" variant="ghost" onClick={() => setTransferOpen(true)}>
-            Transfer
-          </Button>
-        </div>
-      )}
+            ) : (
+              event.maxResaleBps > 0 && (
+                <Button size="sm" variant="outline" onClick={() => setListOpen(true)}>
+                  List for resale
+                </Button>
+              )
+            )}
+            <Button size="sm" variant="ghost" onClick={() => setTransferOpen(true)}>
+              Transfer
+            </Button>
+          </>
+        )}
+      </div>
 
       <Modal
         open={listOpen}
