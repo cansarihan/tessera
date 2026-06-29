@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ArrowLeft, CalendarClock, ShieldCheck, Tag, Ticket as TicketIcon } from 'lucide-react';
+import { ArrowLeft, CalendarClock, Share2, ShieldCheck, Tag, Ticket as TicketIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import type { Ticket } from '@tessera/sdk';
 import { useEvent } from '../lib/queries';
@@ -100,9 +100,29 @@ export function EventDetail() {
                 </span>
               </div>
             </div>
-            <Badge tone="cyan" className="gap-1">
-              <Tag className="size-3.5" /> Resale cap {capPct}%
-            </Badge>
+            <div className="flex items-center gap-2">
+              <Badge tone="cyan" className="gap-1">
+                <Tag className="size-3.5" /> Resale cap {capPct}%
+              </Badge>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={async () => {
+                  const url = window.location.href;
+                  try {
+                    if (navigator.share) await navigator.share({ title: event.name, url });
+                    else {
+                      await navigator.clipboard.writeText(url);
+                      toast.success('Link copied');
+                    }
+                  } catch {
+                    /* dismissed */
+                  }
+                }}
+              >
+                <Share2 className="size-4" /> Share
+              </Button>
+            </div>
           </div>
         </div>
       </div>
