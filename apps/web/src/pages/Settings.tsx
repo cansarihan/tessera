@@ -11,6 +11,7 @@ import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Field, Input, Textarea } from '../components/ui/Field';
 import { AddressChip } from '../components/ui/AddressChip';
+import { WalletBalance } from '../components/WalletBalance';
 import { cn } from '../lib/cn';
 
 export function Settings() {
@@ -51,6 +52,14 @@ export function Settings() {
               <dt className="text-fg-muted">Address</dt>
               <dd>{address ? <AddressChip address={address} /> : <span className="text-fg-subtle">Not connected</span>}</dd>
             </div>
+            {address && (
+              <div className="flex items-center justify-between">
+                <dt className="text-fg-muted">Balance</dt>
+                <dd>
+                  <WalletBalance address={address} />
+                </dd>
+              </div>
+            )}
             <div className="flex items-center justify-between">
               <dt className="text-fg-muted">Network</dt>
               <dd className="text-fg capitalize">{NETWORK}</dd>
