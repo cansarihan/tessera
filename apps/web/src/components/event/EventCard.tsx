@@ -28,6 +28,12 @@ export function EventCard({ event }: { event: Event }) {
           <CalendarClock className="size-4" />
           {formatDate(event.startTime)} · <span className="text-fg-subtle">{untilEvent(event.startTime)}</span>
         </div>
+        <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/8">
+          <div
+            className="h-full rounded-full bg-gradient-to-r from-holo-violet to-holo-cyan"
+            style={{ width: `${supply ? Math.round(((supply - left) / supply) * 100) : 0}%` }}
+          />
+        </div>
         <div className="mt-4 flex items-center justify-between border-t border-white/8 pt-4">
           <div>
             <p className="text-xs text-fg-subtle">From</p>
