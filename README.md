@@ -110,7 +110,7 @@ _Demo video link: coming soon._
 - **Real users** — onboarded testnet users with real wallet interactions. Verify every event,
   purchase and check-in on
   [stellar.expert](https://stellar.expert/explorer/testnet/contract/CBPKPVNYRW6HS7ZZYAB6QZ45FHJTA2XWJBAPWTV2R5UBED4SCROPMLFG).
-- **User details form** — a [Google Form](#) collects wallet, email, name and a product rating.
+- **User details form** — a [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSdeumsCeoZpgwMx-bcD1A3mNk20CPh_OLEJDOkt3ovxMg4IoQ/viewform) collects wallet, email, name and a product rating.
   The same fields are also collected in-app (Settings → *Join the pilot*) and exported to a sheet via
   `GET /api/onboard/export.csv`. Exported responses: [`docs/users.csv`](docs/users.csv).
 - **Feedback** — collected through the in-app widget and summarized live on the **Analytics** page.
